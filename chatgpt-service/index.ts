@@ -94,7 +94,9 @@ ${searchResult}
 ${responseData?.choices?.[0]?.message?.content}
 
 ----
-answer based on the following search result
+The response was based on the following data
+----
+
 ${searchResult}
 `;
   res.send(responseText)
