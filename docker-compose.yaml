@@ -9,6 +9,8 @@ services:
       - ./chatgpt-service:/chatgpt-service
     working_dir: /chatgpt-service
     command: ["/bin/bash", "-c", "ts-node index.ts"]
+    ports:
+      - '9999:9999'
 
   elasticsearch-service:
     image: elasticsearch:7.17.17

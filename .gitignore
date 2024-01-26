@@ -1,1 +1,2 @@
-chatgpt-service/node_modules/
+chatgpt-service/node_modules
+chatgpt-service/.env
