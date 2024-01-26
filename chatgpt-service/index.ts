@@ -86,8 +86,18 @@ ${searchResult}
     body: data,
   });
   
-  const responseData = await response.json();
-  res.json(responseData);
+  const responseData: any = await response.json();
+  // res.json(responseData);
+  console.log(responseData);
+
+  const responseText = `
+${responseData?.choices?.[0]?.message?.content}
+
+----
+answer based on the following search result
+${searchResult}
+`;
+  res.send(responseText)
 });
 
 const app = express();

@@ -6,7 +6,7 @@ const search = async () => {
     body: JSON.stringify({
       query: {
         match: {
-          content: 'what is life?',
+          content: "mongo database"
         },
       },
     }),

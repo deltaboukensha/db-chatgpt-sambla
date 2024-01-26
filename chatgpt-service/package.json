@@ -4,15 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "seed": "ts-node ./seed-elasticsearch.ts",
+    "seed1": "ts-node ./seed-elasticsearch.ts",
+    "seed2": "ts-node ./seed-from-url.ts",
+    "seed3": "ts-node ./seed-from-wiki.ts",
     "search": "ts-node ./search-elasticsearch.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.21",
+    "axios": "^1.6.7",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
     "ts-node": "^10.9.2"
   }
 }
