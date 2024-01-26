@@ -4,7 +4,7 @@ curl -X POST -H 'Content-Type: application/json' -d '{"message":"how do i connec
 
 curl -X POST -H 'Content-Type: application/json' -d '{"message":"how do i connect to mysql?"}' http://localhost:9999/chat
 
-curl -X POST -H 'Content-Type: application/json' -d '{"message":"Sambla"}' http://localhost:9999/chat
+curl -X POST -H 'Content-Type: application/json' -d '{"message":"What is crm-frontend?"}' http://localhost:9999/chat
 
 curl -X POST -H 'Content-Type: application/json' -d '{"message":"What is Sambla"}' http://localhost:9999/chat
 
@@ -25,3 +25,7 @@ curl -X GET "localhost:9200/myindex/_count?pretty" -H 'Content-Type: application
 curl -X GET "localhost:9200/myindex/_count?pretty"
 
 curl -X GET "localhost:9200/myindex/_field_caps?fields=url"
+
+https://www.elastic.co/videos/vector-similarity-search
+
+https://platform.openai.com/docs/api-reference/embeddings/create
