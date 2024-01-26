@@ -14,4 +14,12 @@ services:
 
   elasticsearch-service:
     image: elasticsearch:7.17.17
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+
+networks:
+  mynetwork:
+
   

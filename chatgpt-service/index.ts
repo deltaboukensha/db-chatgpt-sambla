@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
+
 const apiKey = process.env.API_KEY;
 const apiUrl = `https://api.openai.com/v1/chat/completions`;
 
@@ -18,8 +19,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/chat', async (req, res) => {
-  console.log(req.body)
-
   const { message } = req.body;
   console.log(JSON.stringify({ message }))
 
