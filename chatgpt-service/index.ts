@@ -3,6 +3,25 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
+const search = async (content: string) => {
+  const apiBaseUrl = 'http://elasticsearch-service:9200';
+  const response = await fetch(`${apiBaseUrl}/myindex/_search`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: {
+        match: {
+          content,
+        },
+      },
+    }),
+  });
+  
+  const searchData: any = await response.json();
+  console.log(JSON.stringify({ searchData }))
+
+  return searchData?.hits?.hits;
+}
 
 const apiKey = process.env.API_KEY;
 const apiUrl = `https://api.openai.com/v1/chat/completions`;
@@ -29,9 +48,31 @@ router.post('/chat', async (req, res) => {
     return;
   }
 
-  const content = `${message}`;
+  const hits = await search(message);
+  const topHit = hits?.[0];
 
-  console.log(JSON.stringify({ content }))
+  const searchResult = topHit 
+    ? `
+the search result source url:
+${topHit._source.url}
+
+the search result content:
+${topHit._source.content}
+`
+    : `No search results found`;
+
+  console.log(JSON.stringify({ searchResult }))
+
+  const content = `
+Answer the following message:
+${message}
+
+Using an answer based on the following search results:
+${searchResult}
+`;
+
+  console.log("CONTENT");
+  console.log(content)
 
   const data = JSON.stringify({
     model: "gpt-3.5-turbo",
