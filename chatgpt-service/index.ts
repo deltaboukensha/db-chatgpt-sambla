@@ -64,10 +64,12 @@ ${topHit._source.content}
   console.log(JSON.stringify({ searchResult }))
 
   const content = `
+Your name is the SamblaGuru
+
 Answer the following message:
 ${message}
 
-Using an answer based on the following search results:
+The answer should be based on the following search results and also include the source url in the answer:
 ${searchResult}
 `;
 
@@ -92,12 +94,6 @@ ${searchResult}
 
   const responseText = `
 ${responseData?.choices?.[0]?.message?.content}
-
-----
-The response was based on the following data
-----
-
-${searchResult}
 `;
   res.send(responseText)
 });

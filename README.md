@@ -1,5 +1,9 @@
 # db-chatgpt-sambla
 
+curl -X POST -H 'Content-Type: application/json' -d '{"message":"how do i connect to mongo database?"}' http://localhost:9999/chat
+
+curl -X POST -H 'Content-Type: application/json' -d '{"message":"how do i connect to mysql?"}' http://localhost:9999/chat
+
 curl -X POST -H 'Content-Type: application/json' -d '{"message":"Sambla"}' http://localhost:9999/chat
 
 curl -X POST -H 'Content-Type: application/json' -d '{"message":"What is Sambla"}' http://localhost:9999/chat
