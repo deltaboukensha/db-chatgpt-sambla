@@ -5,8 +5,8 @@ const search = async () => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query: {
-        match_phrase: {
-          content: 'life?',
+        match: {
+          content: 'what is life?',
         },
       },
     }),
