@@ -3,6 +3,7 @@ import * as SlackBolt from '@slack/bolt';
 import dotenv from 'dotenv'
 import axios from 'axios';
 import axiosCurlirize from 'axios-curlirize';
+import { GenericMessageEvent } from '@slack/bolt';
 
 dotenv.config();
 axiosCurlirize(axios);
@@ -52,20 +53,31 @@ const replyToThread = async (id: string, ts: string, reply: string) => {
 
 app.message(async (event) => {
   console.log(event)
-  const { message } = event;
-  await addReactionToMessage(message.channel, message.ts, "thinking_face")
-  await replyToThread(message.channel, message.ts, "Reply to thread");
-  await removeReactionToMessage(message.channel, message.ts, "thinking_face")
-  
-  // const response = await axios.post("http://localhost:9999/chat", {
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({
-  //     message
-  //   })
-  // })
+  const message = event.message as GenericMessageEvent;
 
-  // console.log(response.data)
-  
+  try{
+    await addReactionToMessage(message.channel, message.ts, "thinking_face")
+
+    const response = await axios.post("http://chatgpt-service:9999/chat", {
+        message: message.text,
+      },
+      { headers: {
+        "Content-Type": 'application/json',
+      }
+      },
+    )
+
+    console.log("chatResponse", response.data)
+
+    await replyToThread(message.channel, message.ts, response.data);
+  }
+  catch(error){
+    console.error(error);
+    await addReactionToMessage(message.channel, message.ts, "everythings_fine_parrot");
+  }
+  finally{
+    await removeReactionToMessage(message.channel, message.ts, "thinking_face");
+  }
 });
 
 (async () => {
