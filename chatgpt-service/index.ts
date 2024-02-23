@@ -91,6 +91,7 @@ ${searchResult}
   const responseData: any = await response.json();
   // res.json(responseData);
   console.log(responseData);
+  // TODO handle insufficient quote error
 
   const responseText = `
 ${responseData?.choices?.[0]?.message?.content}
