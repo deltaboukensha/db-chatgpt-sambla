@@ -23,7 +23,7 @@ const search = async (content: string) => {
   return searchData?.hits?.hits;
 }
 
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.CHATGPT_API_KEY;
 const apiUrl = `https://api.openai.com/v1/chat/completions`;
 
 const headers = {
