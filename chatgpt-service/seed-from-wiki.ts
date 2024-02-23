@@ -9,7 +9,7 @@ import axios from "axios";
     const apiBaseUrl = 'http://localhost:9200';
     const response = await axios.post(`${apiBaseUrl}/myindex/_doc`, 
     {
-      url: "dev-docker.wiki/" + file,
+      url: "https://github.com/Advisa/dev-docker/wiki/"+file.replace(".md", ""),
       content: data,
     }, {
       headers: {
