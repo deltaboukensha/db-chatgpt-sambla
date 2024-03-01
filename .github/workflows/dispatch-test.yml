@@ -1,0 +1,25 @@
+name: Dispatch Test
+
+on:
+  workflow_dispatch:
+    types:
+      - trigger-curl-event
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Parse payload
+        run: |
+          echo "Received payload: ${{ github.event.client_payload | tojson }}"
+          
+          # Access specific keys in the payload
+          key1_value=$(echo "${{ github.event.client_payload.key1 }}")
+          key2_value=$(echo "${{ github.event.client_payload.key2 }}")
+
+          echo "Value of key1: $key1_value"
+          echo "Value of key2: $key2_value"
