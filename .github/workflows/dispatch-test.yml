@@ -2,8 +2,6 @@ name: Dispatch Test
 
 on:
   workflow_dispatch:
-    types:
-      - trigger-curl-event
 
 jobs:
   build:
